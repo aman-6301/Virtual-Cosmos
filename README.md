@@ -57,21 +57,26 @@ The server exposes a RESTful API for retrieving historical data and managing the
 ```text
 virtual-cosmos/
 ├── client/                 # Frontend Application
+│   ├── public/             # Static assets
 │   ├── src/
 │   │   ├── components/     # React UI components (Chat, Modal, Canvas)
 │   │   ├── game/           # PixiJS logic & Sprite management
 │   │   ├── hooks/          # Custom React hooks (Socket, Proximity)
 │   │   ├── shared/         # Constants shared across client files
 │   │   ├── App.jsx         # Main Layout & HUD Orchestration
+│   │   ├── main.jsx        # React entry point
 │   │   └── index.css       # Global styles & Tailwind 4 layers
-│   └── vite.config.js      # Build & Development configuration
+│   ├── .env.development    # Local development environment
+│   ├── index.html          # HTML template
+│   └── vite.config.js      # Vite configuration
 │
 └── server/                 # Backend Application
     ├── models/             # Mongoose schemas (Message, Session)
     ├── constants.js        # Server-side constants (Radii, World Size)
     ├── db.js               # Database connection logic
-    ├── index.js            # Socket.io events & Express routes
-    └── .env.example        # Template for environment variables
+    ├── roomManager.js      # logic for managing room interactions
+    ├── index.js            # Socket.io events & Express server
+    └── .env                # Server environment variables
 ```
 
 ---
@@ -125,7 +130,11 @@ To prevent "Ghost Movement," the engine intelligently monitors focus states. Whe
    ```bash
    npm install
    ```
-3. Start the development server:
+3. Create a `.env.development` file and point it to your server:
+   ```env
+   VITE_SERVER_URL=http://localhost:3001
+   ```
+4. Start the development server:
    ```bash
    npm run dev
    ```
