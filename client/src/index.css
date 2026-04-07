@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cosmos-950: #05060f;
+  --color-cosmos-900: #0f1023;
+  --color-cosmos-800: #1a1c3a;
+  --color-cosmos-700: #2a2d5a;
+}
+
+@layer base {
+  body {
+    @apply bg-cosmos-950 text-white overflow-hidden;
+    background: radial-gradient(circle at center, #1a1c3a 0%, #05060f 100%);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full transition-colors hover:bg-white/20;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+  }
+
+  @keyframes bounce-in {
+    0% { transform: translate(-50%, 40px); opacity: 0; }
+    60% { transform: translate(-50%, -10px); opacity: 1; }
+    100% { transform: translate(-50%, 0); opacity: 1; }
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  @keyframes fade-in-up {
+    0% { transform: translateY(10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-in {
+    animation: fade-in-up 0.3s ease-out both;
+  }
+}
